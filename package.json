@@ -41,7 +41,7 @@
     "node": "24",
     "npm": "11"
   },
-  "name": "starter-nextjs-16",
+  "name": "stopwatch",
   "private": true,
   "scripts": {
     "build": "next build",

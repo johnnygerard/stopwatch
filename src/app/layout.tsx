@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     sizes: "32x32",
     media: `(prefers-color-scheme: ${theme})`,
   })),
-  metadataBase: new URL("https://starter-nextjs-16.vercel.app"),
+  metadataBase: new URL("https://stopwatch.vercel.app"),
   title: {
     template: `%s | ${APP_NAME}`,
     default: TITLE,
