@@ -13,7 +13,7 @@ export const StopwatchDisplay: FC<Props> = ({ milliseconds }) => {
   const fmt = (n: number, digits = 2) => String(n).padStart(digits, "0");
 
   return (
-    <div className="font-mono text-7xl font-light tracking-tight text-slate-800 tabular-nums dark:text-slate-100">
+    <div className="text-7xl font-light tracking-tight text-slate-800 tabular-nums dark:text-slate-100">
       <span>{fmt(hours)}</span>
       <span className="opacity-60">:</span>
       <span>{fmt(minutes)}</span>
