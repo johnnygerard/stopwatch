@@ -38,7 +38,7 @@ export const Stopwatch: FC = () => {
       <h1
         className={tw(
           "text-xs font-semibold tracking-widest uppercase",
-          "text-slate-400 dark:text-slate-500",
+          "text-slate-600 dark:text-slate-400",
         )}
       >
         Stopwatch
@@ -51,7 +51,7 @@ export const Stopwatch: FC = () => {
             onClick={() => setStopped(false)}
             className={tw(
               btnBase,
-              "bg-emerald-500 text-white hover:bg-emerald-600 active:bg-emerald-700",
+              "bg-emerald-700 text-white hover:bg-emerald-800 active:bg-emerald-900",
             )}
           >
             {milliseconds === 0 ? "Start" : "Resume"}
@@ -62,7 +62,7 @@ export const Stopwatch: FC = () => {
             onClick={() => setStopped(true)}
             className={tw(
               btnBase,
-              "bg-rose-500 text-white hover:bg-rose-600 active:bg-rose-700",
+              "bg-rose-700 text-white hover:bg-rose-800 active:bg-rose-900",
             )}
           >
             Stop

@@ -15,11 +15,11 @@ export const StopwatchDisplay: FC<Props> = ({ milliseconds }) => {
   return (
     <div className="font-mono text-7xl font-light tracking-tight text-slate-800 tabular-nums dark:text-slate-100">
       <span>{fmt(hours)}</span>
-      <span className="opacity-40">:</span>
+      <span className="opacity-60">:</span>
       <span>{fmt(minutes)}</span>
-      <span className="opacity-40">:</span>
+      <span className="opacity-60">:</span>
       <span>{fmt(seconds)}</span>
-      <span className="opacity-40">.</span>
+      <span className="opacity-60">.</span>
       <span className="text-5xl">{fmt(centiseconds)}</span>
     </div>
   );
