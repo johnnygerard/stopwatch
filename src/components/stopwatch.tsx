@@ -7,9 +7,21 @@ const btnBase = tw(
   "w-32 rounded-full px-8 py-3 text-sm font-semibold tracking-wide uppercase transition-colors",
 );
 
+const STORAGE_KEY = "stopwatch:milliseconds";
+
 export const Stopwatch: FC = () => {
+  const [initialized, setInitialized] = useState(false);
   const [milliseconds, setMilliseconds] = useState(0);
   const [stopped, setStopped] = useState(true);
+
+  useEffect(() => {
+    const keyValue = window.localStorage.getItem(STORAGE_KEY) ?? "0";
+    const parsed = window.parseInt(keyValue, 10);
+
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMilliseconds(window.isNaN(parsed) ? 0 : parsed);
+    setInitialized(true);
+  }, []);
 
   useEffect(() => {
     let timerId = 0;
@@ -27,12 +39,21 @@ export const Stopwatch: FC = () => {
     };
   }, [stopped]);
 
+  useEffect(() => {
+    if (stopped) {
+      window.localStorage.setItem(STORAGE_KEY, milliseconds.toString());
+    }
+  }, [milliseconds, stopped]);
+
   return (
     <div
+      aria-hidden={!initialized}
       className={tw(
         "mx-auto flex flex-col items-center gap-10",
         "rounded-3xl bg-white px-16 py-14 shadow-xl",
         "ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-700",
+        initialized ? "opacity-100" : "pointer-events-none opacity-0",
+        "transition-opacity duration-1000",
       )}
     >
       <h1
