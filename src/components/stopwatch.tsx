@@ -32,18 +32,20 @@ export const Stopwatch: FC = () => {
 
   // Update stopwatch display.
   useEffect(() => {
-    let timerId = 0;
+    if (stopped) return;
+    let rafId = 0;
+    let lastTime = window.performance.now();
 
-    if (stopped) {
-      window.clearInterval(timerId);
-    } else {
-      timerId = window.setInterval(() => {
-        setMilliseconds((value) => value + 10);
-      }, 10);
-    }
+    const tick: FrameRequestCallback = (time: number): void => {
+      const elapsed = time - lastTime;
+      lastTime = time;
+      setMilliseconds((value) => value + elapsed);
+      rafId = window.requestAnimationFrame(tick);
+    };
 
+    rafId = window.requestAnimationFrame(tick);
     return () => {
-      if (timerId > 0) window.clearInterval(timerId);
+      window.cancelAnimationFrame(rafId);
     };
   }, [stopped]);
 
@@ -63,7 +65,9 @@ export const Stopwatch: FC = () => {
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
-    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
   }, []);
 
   return (
