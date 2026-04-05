@@ -7,27 +7,22 @@ export const metadata: Metadata = {
 };
 
 const NotFound: FC = () => (
-  <div className="mx-auto w-full max-w-3xl px-6 py-16 text-center">
-    <hgroup>
-      <p className="text-xs tracking-[0.3em] text-neutral-400 uppercase">
+  <div className="flex flex-col items-center justify-center gap-6 text-center">
+    <hgroup className="flex flex-col gap-2">
+      <p className="text-sm font-semibold tracking-widest text-blue-400 uppercase">
         404 Error
       </p>
-      <h1 className="mt-4 text-3xl leading-tight font-semibold text-balance sm:text-4xl">
-        Page Not Found
-      </h1>
+      <h1 className="text-4xl font-bold">Page Not Found</h1>
     </hgroup>
-    <p className="mt-2 text-base text-neutral-300">
+    <p className="max-w-sm text-gray-400">
       Sorry, the page you are looking for does not exist or has been moved.
     </p>
-
-    <div className="mt-10 flex items-center justify-center">
-      <Link
-        href="/"
-        className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900/70 px-5 py-2 text-sm font-semibold text-neutral-100 transition hover:border-neutral-700 hover:bg-neutral-900"
-      >
-        Back to Home
-      </Link>
-    </div>
+    <Link
+      href="/"
+      className="rounded-lg bg-blue-500 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-blue-600 focus-visible:outline-blue-400"
+    >
+      Back to Home
+    </Link>
   </div>
 );
 

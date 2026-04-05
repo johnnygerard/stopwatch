@@ -1,7 +1,7 @@
 # Next.js 16 Starter
 
 ![project status](https://img.shields.io/badge/project_status-active-success?style=for-the-badge)
-[![live site](https://img.shields.io/badge/live_site-blue?style=for-the-badge)](https://starter-nextjs-16.vercel.app/)
+[![live site](https://img.shields.io/badge/live_site-blue?style=for-the-badge)](https://stopwatch.vercel.app/)
 
 ## Overview
 
