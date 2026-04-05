@@ -14,7 +14,7 @@ const TITLE = APP_NAME;
 const DESCRIPTION = "A simple and precise stopwatch app.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://stopwatch.vercel.app"),
+  metadataBase: new URL("https://stopwatch-eta-olive.vercel.app"),
   title: {
     template: `%s | ${APP_NAME}`,
     default: TITLE,
