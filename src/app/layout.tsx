@@ -9,10 +9,9 @@ const geistSans = Geist({
   variable: "--font-geist-sans",
 });
 
-const APP_NAME = "Next.js 16 Starter";
+const APP_NAME = "Stopwatch";
 const TITLE = APP_NAME;
-const DESCRIPTION =
-  "A starter template for Next.js 16 with the latest features and best practices.";
+const DESCRIPTION = "A simple and precise stopwatch app.";
 
 export const metadata: Metadata = {
   icons: (["light", "dark"] as const).map((theme) => ({
