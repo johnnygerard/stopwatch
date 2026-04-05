@@ -1,6 +1,11 @@
 "use client";
 import { useEffect, useState, type FC } from "react";
 import { StopwatchDisplay } from "~/components/stopwatch-display";
+import { tw } from "~/utils/tw";
+
+const btnBase = tw(
+  "w-32 rounded-full px-8 py-3 text-sm font-semibold tracking-wide uppercase transition-colors",
+);
 
 export const Stopwatch: FC = () => {
   const [milliseconds, setMilliseconds] = useState(0);
@@ -23,26 +28,53 @@ export const Stopwatch: FC = () => {
   }, [stopped]);
 
   return (
-    <div>
-      {stopped ? (
-        <button type="button" onClick={() => setStopped(false)}>
-          {milliseconds === 0 ? "Start" : "Resume"}
-        </button>
-      ) : (
-        <button type="button" onClick={() => setStopped(true)}>
-          Stop
-        </button>
-      )}
-      <button
-        type="button"
-        onClick={() => {
-          setStopped(true);
-          setMilliseconds(0);
-        }}
-      >
-        Reset
-      </button>
+    <div className="mx-auto flex flex-col items-center gap-10 rounded-3xl bg-white px-16 py-14 shadow-xl ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-700">
+      <h1 className="text-xs font-semibold tracking-widest text-slate-400 uppercase dark:text-slate-500">
+        Stopwatch
+      </h1>
       <StopwatchDisplay milliseconds={milliseconds} />
+      <div className="flex gap-4">
+        {stopped ? (
+          <button
+            type="button"
+            onClick={() => setStopped(false)}
+            className={tw(
+              btnBase,
+              "bg-emerald-500 text-white hover:bg-emerald-600 active:bg-emerald-700",
+            )}
+          >
+            {milliseconds === 0 ? "Start" : "Resume"}
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setStopped(true)}
+            className={tw(
+              btnBase,
+              "bg-rose-500 text-white hover:bg-rose-600 active:bg-rose-700",
+            )}
+          >
+            Stop
+          </button>
+        )}
+        <button
+          type="button"
+          aria-disabled={stopped && milliseconds === 0}
+          onClick={() => {
+            if (stopped && milliseconds === 0) return;
+            setStopped(true);
+            setMilliseconds(0);
+          }}
+          className={tw(
+            btnBase,
+            stopped && milliseconds === 0
+              ? "cursor-not-allowed border border-slate-200 bg-white text-slate-300 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-700"
+              : "border border-slate-300 bg-white text-slate-500 hover:bg-slate-100 hover:text-slate-700 active:bg-slate-200 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200",
+          )}
+        >
+          Reset
+        </button>
+      </div>
     </div>
   );
 };
