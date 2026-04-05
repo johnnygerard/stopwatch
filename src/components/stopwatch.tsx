@@ -28,8 +28,19 @@ export const Stopwatch: FC = () => {
   }, [stopped]);
 
   return (
-    <div className="mx-auto flex flex-col items-center gap-10 rounded-3xl bg-white px-16 py-14 shadow-xl ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-700">
-      <h1 className="text-xs font-semibold tracking-widest text-slate-400 uppercase dark:text-slate-500">
+    <div
+      className={tw(
+        "mx-auto flex flex-col items-center gap-10",
+        "rounded-3xl bg-white px-16 py-14 shadow-xl",
+        "ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-700",
+      )}
+    >
+      <h1
+        className={tw(
+          "text-xs font-semibold tracking-widest uppercase",
+          "text-slate-400 dark:text-slate-500",
+        )}
+      >
         Stopwatch
       </h1>
       <StopwatchDisplay milliseconds={milliseconds} />
@@ -68,8 +79,17 @@ export const Stopwatch: FC = () => {
           className={tw(
             btnBase,
             stopped && milliseconds === 0
-              ? "cursor-not-allowed border border-slate-200 bg-white text-slate-300 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-700"
-              : "border border-slate-300 bg-white text-slate-500 hover:bg-slate-100 hover:text-slate-700 active:bg-slate-200 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200",
+              ? [
+                  "cursor-not-allowed border border-slate-200",
+                  "bg-white text-slate-300",
+                  "dark:border-slate-800 dark:bg-slate-900 dark:text-slate-700",
+                ]
+              : [
+                  "border border-slate-300 bg-white text-slate-500",
+                  "hover:bg-slate-100 hover:text-slate-700 active:bg-slate-200",
+                  "dark:border-slate-600 dark:bg-slate-900 dark:text-slate-400",
+                  "dark:hover:bg-slate-800 dark:hover:text-slate-200",
+                ],
           )}
         >
           Reset
