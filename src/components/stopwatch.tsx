@@ -9,7 +9,11 @@ const btnBase = tw(
 
 const STORAGE_KEY = "stopwatch:milliseconds";
 
-export const Stopwatch: FC = () => {
+type Props = {
+  className?: string;
+};
+
+export const Stopwatch: FC<Props> = ({ className }) => {
   const [initialized, setInitialized] = useState(false);
   const [milliseconds, setMilliseconds] = useState(0);
   const [stopped, setStopped] = useState(true);
@@ -78,6 +82,7 @@ export const Stopwatch: FC = () => {
         "ring-1 ring-slate-200",
         initialized ? "opacity-100" : "invisible opacity-0",
         "transition-opacity duration-1000",
+        className,
       )}
     >
       <h1 className="text-xs font-semibold tracking-widest text-slate-600 uppercase">
