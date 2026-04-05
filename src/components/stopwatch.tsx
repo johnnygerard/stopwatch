@@ -15,11 +15,12 @@ export const Stopwatch: FC = () => {
   const [stopped, setStopped] = useState(true);
   const millisecondsRef = useRef(milliseconds);
 
-  // Sync milliseconds state to ref for use in beforeunload handler.
+  // Sync state to ref for use in beforeunload handler.
   useEffect(() => {
     millisecondsRef.current = milliseconds;
   }, [milliseconds]);
 
+  // Restore state on component mount.
   useEffect(() => {
     const keyValue = window.localStorage.getItem(STORAGE_KEY) ?? "0";
     const parsed = window.parseInt(keyValue, 10);
@@ -29,6 +30,7 @@ export const Stopwatch: FC = () => {
     setInitialized(true);
   }, []);
 
+  // Update stopwatch display.
   useEffect(() => {
     let timerId = 0;
 
@@ -45,6 +47,7 @@ export const Stopwatch: FC = () => {
     };
   }, [stopped]);
 
+  // Persist state when stopped.
   useEffect(() => {
     if (stopped) {
       window.localStorage.setItem(STORAGE_KEY, milliseconds.toString());
@@ -52,7 +55,7 @@ export const Stopwatch: FC = () => {
   }, [milliseconds, stopped]);
 
   useEffect(() => {
-    const handleBeforeUnload = () => {
+    const handleBeforeUnload = (): void => {
       window.localStorage.setItem(
         STORAGE_KEY,
         millisecondsRef.current.toString(),
