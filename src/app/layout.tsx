@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import type { FC, ReactNode } from "react";
 import "~/styles/globals.css";
-import { tw } from "~/utils/tw";
 
 const geistSans = Geist({
   display: "swap",
@@ -47,12 +46,7 @@ const RootLayout: FC<Props> = ({ children }) => (
     data-scroll-behavior="smooth"
     lang="en-US"
   >
-    <body
-      className={tw(
-        "bg-neutral-950 font-sans text-base text-neutral-100",
-        "selection:bg-neutral-200 selection:text-neutral-900",
-      )}
-    >
+    <body>
       {/* This wrapper prevents a body overflow in mobile browsers. */}
       <div className="flex min-h-screen flex-col">
         {/* <Header /> */}

@@ -1,5 +1,4 @@
 import type { FC } from "react";
-import { Starter } from "~/components/starter";
 
-const HomePage: FC = () => <Starter />;
+const HomePage: FC = () => null;
 export default HomePage;
