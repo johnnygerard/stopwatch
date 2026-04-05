@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, type FC } from "react";
+import { useEffect, useRef, useState, type FC } from "react";
 import { StopwatchDisplay } from "~/components/stopwatch-display";
 import { tw } from "~/utils/tw";
 
@@ -13,6 +13,12 @@ export const Stopwatch: FC = () => {
   const [initialized, setInitialized] = useState(false);
   const [milliseconds, setMilliseconds] = useState(0);
   const [stopped, setStopped] = useState(true);
+  const millisecondsRef = useRef(milliseconds);
+
+  // Sync milliseconds state to ref for use in beforeunload handler.
+  useEffect(() => {
+    millisecondsRef.current = milliseconds;
+  }, [milliseconds]);
 
   useEffect(() => {
     const keyValue = window.localStorage.getItem(STORAGE_KEY) ?? "0";
@@ -44,6 +50,18 @@ export const Stopwatch: FC = () => {
       window.localStorage.setItem(STORAGE_KEY, milliseconds.toString());
     }
   }, [milliseconds, stopped]);
+
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      window.localStorage.setItem(
+        STORAGE_KEY,
+        millisecondsRef.current.toString(),
+      );
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, []);
 
   return (
     <div
