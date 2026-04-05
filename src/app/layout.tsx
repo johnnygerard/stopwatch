@@ -14,12 +14,6 @@ const TITLE = APP_NAME;
 const DESCRIPTION = "A simple and precise stopwatch app.";
 
 export const metadata: Metadata = {
-  icons: (["light", "dark"] as const).map((theme) => ({
-    url: `/assets/images/favicon-${theme}.png`,
-    type: "image/png",
-    sizes: "32x32",
-    media: `(prefers-color-scheme: ${theme})`,
-  })),
   metadataBase: new URL("https://stopwatch.vercel.app"),
   title: {
     template: `%s | ${APP_NAME}`,
