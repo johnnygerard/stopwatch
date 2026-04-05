@@ -47,12 +47,11 @@ export const Stopwatch: FC = () => {
 
   return (
     <div
-      aria-hidden={!initialized}
       className={tw(
         "mx-auto flex flex-col items-center gap-10",
         "rounded-3xl bg-white px-16 py-14 shadow-xl",
         "ring-1 ring-slate-200",
-        initialized ? "opacity-100" : "pointer-events-none opacity-0",
+        initialized ? "opacity-100" : "invisible opacity-0",
         "transition-opacity duration-1000",
       )}
     >
